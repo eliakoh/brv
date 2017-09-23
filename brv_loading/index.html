@@ -1,0 +1,96 @@
+<html>
+<head>
+  <link href="loadingscreen.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Domine:400,700&amp;subset=latin-ext" rel="stylesheet">
+</head>
+<body>
+  <div class="backdrop">
+    <div class="top"></div>
+    <div class="list">
+      <h2>Rules</h2>
+      <ol id="ruleList">
+        <li class="rule">Be respectful to all players</li>
+        <li class="rule">Be careful with the landing</li>
+        <li class="rule">Don't stay out of the current safe zone when the timer hits 0</li>
+        <li class="rule">Take guns</li>
+        <li class="rule">Shoot</li>
+        <li class="rule">Be the last man standing to win !</li>
+      </ol>
+      <h2>Tips &amp; tricks</h2>
+      <ol id="tipList">
+        <li class="rule">There are <span class="highlight">5</span> safe zones each one smaller than the previous</li>
+        <li class="rule">The first round last <span class="highlight">300</span> seconds, every round is then reduced by 60 secondes</li>
+        <li class="rule">Call <span class="highlight">/911</span> for emergency help</li>
+        <li class="rule">You can get a new random skin with <span class="highlight">/skin</span></li>
+        <li class="rule">Save your current skin with <span class="highlight">/saveskin</span></li>
+        <li class="rule">You can change your IG name with <span class="highlight">/name NewName</span></li>
+        <li class="rule">Want to start the game even if there is not enough players ? <span class="highlight">/vote</span></li>
+        <li class="rule highlight">There is no health regen</li>
+      </ol>
+    </div>
+    <div class="letni">
+      <h1>Battle Royale V</h1>
+      <h2>Loading...</h2>
+      <h3></h3>
+      <div class="loadbar"><div class="thingy"></div></div>
+    </div>
+    <div class="bottom">
+      <div id="gradient">
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  // this will actually restart the loading bar a lot, making multiple loading bars is an exercise to the reader... for now.
+  // for a set of possible events, see https://github.com/citizenfx/cfx-client/blob/up-master/components/loading-screens-five/src/LoadingScreens.cpp
+  var count = 0;
+  var thisCount = 0;
+
+  const emoji = {
+    INIT_BEFORE_MAP_LOADED: [ '🔪' ],
+    INIT_AFTER_MAP_LOADED: [ '🔫', '🗡️'],
+    INIT_SESSION: [ '⚠️', '☣️', '🔞' ],
+  };
+
+  const handlers = {
+    startInitFunctionOrder(data)
+    {
+      count = data.count;
+
+      document.querySelector('.letni h3').innerHTML += emoji[data.type][data.order - 1] || '';
+    },
+
+    initFunctionInvoking(data)
+    {
+      document.querySelector('.thingy').style.left = '0%';
+      document.querySelector('.thingy').style.width = ((data.idx / count) * 100) + '%';
+    },
+
+    startDataFileEntries(data)
+    {
+      count = data.count;
+
+      document.querySelector('.letni h3').innerHTML += '🔫';
+    },
+
+    performMapLoadFunction(data)
+    {
+      ++thisCount;
+
+      document.querySelector('.thingy').style.left = '0%';
+      document.querySelector('.thingy').style.width = ((thisCount / count) * 100) + '%';
+    },
+
+    onLogLine(data)
+    {
+      document.querySelector('.letni p').innerHTML = data.message + "..!";
+    }
+  };
+
+  window.addEventListener('message', function(e)
+  {
+    (handlers[e.data.eventName] || function() {})(e.data);
+  });
+  </script>
+</body>
+</html>
