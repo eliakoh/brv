@@ -6,10 +6,12 @@ AddEventHandler('chatMessageEntered', function(name, color, message)
         return
     end
 
+    local safeSource = source
+
     TriggerEvent('chatMessage', source, name, message)
 
     if not WasEventCanceled() then
-        TriggerEvent('brv:getPlayerData', source, 'brvchat:sendMessage', {color = color, message = message})
+        TriggerEvent('brv:getPlayerData', safeSource, 'brvchat:sendMessage', {color = color, message = message})
     end
 end)
 

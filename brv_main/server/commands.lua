@@ -82,7 +82,7 @@ end)
 -- /skin
 -- Change the skin, if the game has not already started
 addCommand('skin', function(player, args)
-  if isGameStarted() then
+  if getIsGameStarted() then
     sendSystemMessage(player.source, 'You can\'t change your skin during the Battle')
   else
     TriggerClientEvent('brv:changeSkin', player.source)
@@ -93,7 +93,7 @@ end)
 -- /saveskin
 -- Saves the current player skin
 addCommand('saveskin', function(player, args)
-  if isGameStarted() then
+  if getIsGameStarted() then
     sendSystemMessage(player.source, 'You can\'t save your skin during the Battle')
   else
     TriggerEvent('brv:saveSkin')
@@ -104,7 +104,7 @@ end)
 -- /vote
 -- Vote for the game to start
 addCommand('vote', function(player, args)
-  if isGameStarted() then
+  if getIsGameStarted() then
     sendSystemMessage(player.source, 'You can\'t vote during the Battle')
   else
     TriggerEvent('brv:voteServer', player.source)
@@ -115,7 +115,7 @@ end)
 -- /name
 -- Change the player's name
 addCommand('name', function(player, args)
-  if isGameStarted() then
+  if getIsGameStarted() then
     sendSystemMessage(player.source, 'You can\'t change your name during the Battle')
   else
     if #args == 0 then
@@ -294,7 +294,7 @@ end)
 
 -- Parse every chat message to detect if a command was entered
 AddEventHandler('chatMessage', function(source, name, message)
-  if string.len(message) > 1 and message[0] == '/' then
+  if string.len(message) > 1 and string.sub(message, 1, 1) == '/' then
     local args = explode(message, ' ')
 
     local cmd = string.sub(table.remove(args, 1), 2)

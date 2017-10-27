@@ -182,7 +182,7 @@ function vote(source)
 end
 
 -- isGameStarted ?
-function isGameStarted()
+function getIsGameStarted()
   return isGameStarted
 end
 
@@ -247,10 +247,11 @@ AddEventHandler('brv:showScoreboard', function()
     }
   end
 
+  local safeSource = source
   PerformHttpRequest(conf.stats_url,  function(err, text, headers)
     if text then
       globalData = json.decode(text)
-      TriggerClientEvent('brv:showScoreboard', source, {players = playersData, global = globalData, lastUpdated = headers['Last-Modified']})
+      TriggerClientEvent('brv:showScoreboard', safeSource, {players = playersData, global = globalData, lastUpdated = headers['Last-Modified']})
     end
   end, 'GET', '')
 
