@@ -1,5 +1,11 @@
 # BATTLE ROYALE V
 
+**WARNING**
+
+This gametype was made for CitizenFX Server, the previous version of FX Server.
+
+**IT IS NOT FULLY COMPATIBLE WITH FX SERVER**
+
 ## A Battle Royale gametype for FiveM
 
 ### Requirements
@@ -12,28 +18,25 @@ You only need the main file, you can download it here : https://raw.githubuserco
   ** :warning: Needs to be edited to be able to use emojis in database**
 - Be sure to secure the script, so only your FiveM server can access `api.php`
 
-**This is needed to be able to use MySQL async with FiveM. You are free to use any other database, but you will have to rewrite the provided Database class (`brv_main/classes/database.lua`).**
+**You are free to use any other database, but you will have to rewrite the provided Database class (`brv_main/classes/database.lua`).**
 
 ### Installation
 
-- Clone the Git repository or extract the archive to `cfx-server/resources/[battleroyalev]`
+- Clone the Git repository or extract the archive to `fx-server/server-data/resources/[battleroyalev]`
 
-- Add the following lines to your `AutoStartResources` :
+- The resource list of your `server.cfg` should be :
 ```
-  - brv_chat
-  - brv_scoreboard
-  - brv_spawner
-  - brv_loading
-  - brv_main
-```
-
-- Remove those :
-
-```
-  - chat
-  - scoreboard
-  - fivem
-  - fivem-map-hipster / fivem-map-skater
+start mapmanager
+start brv_chat
+start spawnmanager
+start brv_spawner
+start hardcap
+start rconlog
+start brv_scoreboard
+start brv_spawner
+start brv_loading
+start brv_menu
+start brv_main
 ```
 
 - Copy `brv_main/server/config.default.lua` to `brv_main/server/config.lua` and edit
@@ -48,8 +51,4 @@ You only need the main file, you can download it here : https://raw.githubuserco
 
 ### Update
 
-- Added Discord URL at the top of the screen
-- Edited */help* message
-- Spectator mode now shows health of the current spectated player (**not tested**)
-- Fix : Out-of-zone timer wasn't working with the last zone
-- Possible fix : Added another check for ghost player as the first one doesn't seem to work
+- Some fixes for FX Server compatibility
