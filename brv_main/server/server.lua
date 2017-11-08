@@ -42,6 +42,8 @@ RegisterServerEvent('brv:startGame')
 RegisterServerEvent('brv:stopGame')
 RegisterServerEvent('brv:stopGameClients')
 RegisterServerEvent('brv:clientGameStarted')
+RegisterServerEvent('baseevents:onPlayerDied')
+RegisterServerEvent('baseevents:onPlayerKilled')
 
 --------------------------------------------------------------------------------
 --                            Global functions                                --

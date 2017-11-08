@@ -15,7 +15,7 @@ This gametype was made for CitizenFX Server, the previous version of FX Server.
 
 You only need the main file, you can download it here : https://raw.githubusercontent.com/mevdschee/php-crud-api/master/api.php
 
-  ** :warning: Needs to be edited to be able to use emojis in database**
+  :warning: ** Needs to be edited to be able to use emojis in database**
 - Be sure to secure the script, so only your FiveM server can access `api.php`
 
 **You are free to use any other database, but you will have to rewrite the provided Database class (`brv_main/classes/database.lua`).**
@@ -32,6 +32,7 @@ start spawnmanager
 start brv_spawner
 start hardcap
 start rconlog
+start baseevents
 start brv_scoreboard
 start brv_spawner
 start brv_loading
